@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.core.audio import SoundLoader
 from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
@@ -81,6 +82,9 @@ class PongGame(Widget):
 
 class PongApp(App):
     def build(self):
+        music = SoundLoader.load('1.wav')
+        music.loop = True
+        music.play()
         game = PongGame()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0 / 60)  # 60 FPS
